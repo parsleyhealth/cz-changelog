@@ -1,17 +1,21 @@
 {
   "name": "cz-parsley-changelog",
-  "version": "0.0.0-semantically-released.0",
+  "version": "1.0.0",
   "description": "Commitizen adapter for Parsley.",
+  "keywords": [
+    "Parsley Health",
+    "commitizen"
+  ],
   "main": "index.js",
   "scripts": {
     "commit": "git-cz",
     "test": "echo 'Tests need to be setup!'",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
-  "homepage": "https://github.com/commitizen/cz-parsley-changelog",
+  "homepage": "https://github.com/parsleyhealth/cz-parsley-changelog",
   "repository": {
     "type": "git",
-    "url": "https://github.com/commitizen/cz-parsley-changelog.git"
+    "url": "https://github.com/parsleyhealth/cz-parsley-changelog.git"
   },
   "author": "April Tran <april@parsleyhealth.com>",
   "license": "MIT",
