@@ -86,18 +86,10 @@ module.exports = function(options) {
           }
         },
         {
-          type: 'confirm',
-          name: 'isIssueAffected',
-          message: 'Does this change affect any open Pivotal tickets?',
-          default: options.defaultIssues ? true : false
-        },
-        {
           type: 'input',
           name: 'issues',
-          message: 'Add ticket links:\n',
-          when: function(answers) {
-            return answers.isIssueAffected;
-          },
+          message:
+            'Add Pivotal ticket IDs separated by spaces: (press enter to skip)\n',
           default: options.defaultIssues ? options.defaultIssues : undefined
         }
       ]).then(function(answers) {
@@ -126,7 +118,12 @@ module.exports = function(options) {
           : '';
         breaking = wrap(breaking, wrapOptions);
 
-        var issues = answers.issues ? wrap(answers.issues, wrapOptions) : '';
+        var issues = answers.issues
+          ? answers.issues
+              .split(' ')
+              .map(issue => `[${issue}]`)
+              .join(' ')
+          : '';
 
         var footer = filter([breaking, issues]).join('\n\n');
 
