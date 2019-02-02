@@ -89,7 +89,7 @@ module.exports = function(options) {
           type: 'input',
           name: 'issues',
           message:
-            'Add Pivotal ticket IDs separated by spaces: (press enter to skip)\n',
+            'Add Clubhouse story IDs separated by spaces: (press enter to skip)\n',
           default: options.defaultIssues ? options.defaultIssues : undefined
         }
       ]).then(function(answers) {
@@ -121,7 +121,7 @@ module.exports = function(options) {
         var issues = answers.issues
           ? answers.issues
               .split(' ')
-              .map(issue => `[${issue}]`)
+              .map(issue => `[branch ch${issue}]`)
               .join(' ')
           : '';
 
