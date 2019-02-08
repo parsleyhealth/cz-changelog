@@ -1,5 +1,5 @@
 {
-  "name": "cz-parsley-changelog",
+  "name": "@parsleyhealth/cz-parsley-changelog",
   "version": "1.0.3",
   "description": "Commitizen adapter for Parsley.",
   "keywords": [
