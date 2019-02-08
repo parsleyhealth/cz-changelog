@@ -6,14 +6,14 @@ A [commitizen](https://github.com/commitizen/cz-cli) adapter for [Parsley Health
 
 You should already have the [commitizen CLI](https://github.com/commitizen/cz-cli) installed.
 
-`npm install --save-dev cz-parsley-changelog`
+`npm install --save-dev @parsleyhealth/cz-changelog`
 
 Then add this to your project's `package.json`:
 
 ```
 "config": {
   "commitizen": {
-    "path": "node_modules/cz-parsley-changelog"
+    "path": "node_modules/@parsleyhealth/cz-changelog"
   }
 }
 ```
