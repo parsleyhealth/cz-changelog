@@ -82,9 +82,9 @@ module.exports = function(options) {
           message: function(answers) {
             return (
               'Write a short description of the change (max ' +
-              // Don't need to calculate this since we don't include a type or scope
-              // maxSummaryLength(options, answers) +
-              options.maxHeaderWidth +
+              maxSummaryLength(options, answers) +
+              // Replace all maxSummaryLength with options.maxHeaderWidth if we don't want to include type/scope
+              // options.maxHeaderWidth +
               ' chars):\n'
             );
           },
@@ -93,12 +93,10 @@ module.exports = function(options) {
             var filteredSubject = filterSubject(subject);
             return filteredSubject.length == 0
               ? 'Subject is required'
-              // : filteredSubject.length <= maxSummaryLength(options, answers)
-              : filteredSubject.length <= options.maxHeaderWidth
+              : filteredSubject.length <= maxSummaryLength(options, answers)
               ? true
               : 'Subject length must be less than or equal to ' +
-                options.maxHeaderWidth +
-                // maxSummaryLength(options, answers) +
+                maxSummaryLength(options, answers) +
                 ' characters. Current length is ' +
                 filteredSubject.length +
                 ' characters.';
@@ -106,7 +104,7 @@ module.exports = function(options) {
           transformer: function(subject, answers) {
             var filteredSubject = filterSubject(subject);
             var color =
-              filteredSubject.length <= options.maxHeaderWidth // maxSummaryLength(options, answers)
+              filteredSubject.length <= maxSummaryLength(options, answers)
                 ? chalk.green
                 : chalk.red;
             return color('(' + filteredSubject.length + ') ' + subject);
