@@ -160,8 +160,8 @@ module.exports = function(options) {
         };
 
         // Hard limit this line in the validate
-        // var head = answers.type + ': ' + answers.subject;
-        var head = answers.subject; 
+        var head = answers.type + ': ' + answers.subject;
+        // var head = answers.subject; 
 
         // Wrap these lines at options.maxLineWidth characters
         var body = answers.body ? wrap(answers.body, wrapOptions) : false;
