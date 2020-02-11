@@ -69,19 +69,19 @@ module.exports = function(options) {
       // You can also opt to use another input
       // collection library if you prefer.
       cz.prompt([
-        // {
-        //   type: 'list',
-        //   name: 'type',
-        //   message: "Select the type of change that you're committing:",
-        //   choices: choices,
-        //   default: options.defaultType
-        // },
+        {
+          type: 'list',
+          name: 'type',
+          message: "Select the type of change you're committing:",
+          choices: choices,
+          default: options.defaultType
+        },
         {
           type: 'input',
           name: 'subject',
           message: function(answers) {
             return (
-              'Write a short, imperative tense description of the change (max ' +
+              'Write a short description of the change (max ' +
               // Don't need to calculate this since we don't include a type or scope
               // maxSummaryLength(options, answers) +
               options.maxHeaderWidth +
@@ -92,7 +92,7 @@ module.exports = function(options) {
           validate: function(subject, answers) {
             var filteredSubject = filterSubject(subject);
             return filteredSubject.length == 0
-              ? 'subject is required'
+              ? 'Subject is required'
               // : filteredSubject.length <= maxSummaryLength(options, answers)
               : filteredSubject.length <= options.maxHeaderWidth
               ? true
@@ -118,8 +118,7 @@ module.exports = function(options) {
         {
           type: 'input',
           name: 'body',
-          message:
-            'Provide a longer description of the change: (press enter to skip)\n',
+          message: 'Include details: (press enter to skip)\n',
           default: options.defaultBody
         },
         {
@@ -133,7 +132,7 @@ module.exports = function(options) {
           name: 'breakingBody',
           default: '-',
           message:
-            'A BREAKING CHANGE commit requires a body. Please enter a longer description of the commit itself, including a description of the breaking changes:\n',
+            'A BREAKING CHANGE commit requires a body. Please provide details, including a description of the breaking changes:\n',
           when: function(answers) {
             return answers.isBreaking && !answers.body;
           },
@@ -177,7 +176,7 @@ module.exports = function(options) {
         var issues = answers.issues
           ? wrap(answers.issues
               .split(' ')
-              .map(issue => `[ch${issue}]`)
+              .map(issue => `[ch${issue.replace('ch', '')}]`)
               .join(' '), wrapOptions)
           : false;
 
